@@ -6,6 +6,9 @@ archivo = 'concentrado.xlsx'
 # DataFrame de ejemplo
 df = pd.read_excel(archivo, sheet_name='pedidos')
 
+# Si la columna Guias tiene nan, reemplazar por vacío
+df['Guias'] = df['Guias'].fillna('')
+
 # Convertir la columna de guías a string
 df['Guias'] = df['Guias'].astype(str)
 
@@ -24,6 +27,7 @@ for index, row in df.iterrows():
     # elimina las "" de las guías:
     row['Guias'] = [guía.replace('"', '') for guía in row['Guias']]
 
+
     if row['Cantidad_guías'] > 1:
         for guía in row['Guias']:
             new_row = row.copy()
@@ -38,6 +42,7 @@ df_final = pd.DataFrame(rows)
 
 # Eliminar la columna temporal de cantidad de guías
 df_final = df_final.drop(columns=['Cantidad_guías'])
+
 
 # exportar a excel
 df_final.to_excel('concentrado_final.xlsx', index=False)
