@@ -22,7 +22,7 @@ df['Cantidad_guías'] = df['Guias'].apply(len)
 
 # Crear una lista para cada fila con múltiples guías divididas
 rows = []
-for index, row in df.iterrows():
+for _, row in df.iterrows():
 
     # elimina las "" de las guías:
     row['Guias'] = [guía.replace('"', '') for guía in row['Guias']]
