@@ -47,3 +47,4 @@ def separar_guias(file_path, file_name):
 
     # exportar a excel
     df_final.to_excel(f'{file_name}.xlsx', index=False)
+
